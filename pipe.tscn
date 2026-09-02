@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://ccpatyhn2b3us"]
+
+[ext_resource type="Script" uid="uid://dhju1kt3o54kg" path="res://pipe.gd" id="1_78010"]
+[ext_resource type="Texture2D" uid="uid://1mx7i1e8wlvj" path="res://nathan.png" id="1_bepn3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mostq"]
+size = Vector2(197.5, 744.5)
+
+[node name="Pipe" type="Area2D" unique_id=2143298416]
+script = ExtResource("1_78010")
+
+[node name="Lower" type="Sprite2D" parent="." unique_id=1449568190]
+position = Vector2(0, 550)
+rotation = 1.5707964
+scale = Vector2(1, 0.2)
+texture = ExtResource("1_bepn3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=975048116]
+position = Vector2(0, 550)
+shape = SubResource("RectangleShape2D_mostq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=248282533]
+position = Vector2(0, -500)
+shape = SubResource("RectangleShape2D_mostq")
+
+[node name="Upper" type="Sprite2D" parent="." unique_id=1085199319]
+position = Vector2(0, -500)
+rotation = 1.5707964
+scale = Vector2(1, 0.2)
+texture = ExtResource("1_bepn3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://brdq2cywfhq6y"]
+
+[ext_resource type="Texture2D" uid="uid://1mx7i1e8wlvj" path="res://nathan.png" id="1_jkf55"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ysk7"]
+radius = 9.5
+height = 24.666668
+
+[node name="nathan" type="CharacterBody2D" unique_id=1723283514]
+scale = Vector2(6, 6)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2069228357]
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("1_jkf55")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1057377681]
+shape = SubResource("CapsuleShape2D_4ysk7")

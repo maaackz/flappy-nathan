@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b7w6bjutgnqu5"]
+
+[ext_resource type="PackedScene" uid="uid://brdq2cywfhq6y" path="res://nathan.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://j0fs2ah52fyr" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://tdua3y8dhv5v" path="res://nathan.gd" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://do6gpqmdw1b8p" path="res://bg.jpg" id="2_lquwl"]
+[ext_resource type="PackedScene" uid="uid://okawvfhmv35l" path="res://ground.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://ccpatyhn2b3us" path="res://pipe.tscn" id="6_7mycd"]
+
+[node name="main" type="Node" unique_id=1906067455]
+script = ExtResource("1_h2yge")
+pipe_scene = ExtResource("6_7mycd")
+
+[node name="bg" type="Sprite2D" parent="." unique_id=1250663266]
+position = Vector2(564.49994, 182.49997)
+scale = Vector2(0.7097221, 0.2579861)
+texture = ExtResource("2_lquwl")
+
+[node name="nathan" parent="." unique_id=1723283514 instance=ExtResource("1_0xm2m")]
+script = ExtResource("2_h2yge")
+
+[node name="ground" parent="." unique_id=1092960111 instance=ExtResource("4_1bvp3")]
+
+[node name="PipeTimer" type="Timer" parent="." unique_id=886035854]
+wait_time = 2.75
+
+[connection signal="body_entered" from="ground" to="ground" method="_on_body_entered"]
+[connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]
