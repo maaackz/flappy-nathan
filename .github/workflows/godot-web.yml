@@ -13,12 +13,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Download Godot
+        run: |
+          curl -L -o godot.zip https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+          unzip -q godot.zip
+          chmod +x Godot_v4.7.2-stable_linux.x86_64
+
       - name: Export HTML5
-        uses: andrewleech/godot-web-export-action@master
-        with:
-          godot_version: 4.7.2-stable
-          export_debug: false
-          export_options: export_presets.cfg
+        run: |
+          mkdir -p web-export
+          ./Godot_v4.7.2-stable_linux.x86_64 --headless --export-release "Web" "web-export/index.html"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -31,9 +35,6 @@ jobs:
     permissions:
       pages: write
       id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
